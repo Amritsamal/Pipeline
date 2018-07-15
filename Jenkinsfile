@@ -1,12 +1,13 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                script{
-                mvn clean install
-            }
-            }
-        }
-}
+  agent any
+  tools {
+    maven 'M3'
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh 'mvn -B -DskipTests clean package'
+      }
+    }
+  }
 }
